@@ -1,6 +1,6 @@
 # 图书管理系统
 
-> 基于 Spring Boot 3.x + Vue 3 + MyBatis-Plus + MySQL + Redis 的前后端分离图书管理系统
+> JavaEE 期末课程设计 | Spring Boot 3.x + Vue 3 + MyBatis-Plus + MySQL + Redis 的前后端分离图书管理系统
 
 ## 项目结构
 
