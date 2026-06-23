@@ -1,0 +1,103 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: library-server
+
+  # ========== 数据源配置 ==========
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/library_db?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password:                   # MySQL root 密码（空密码）
+    # 连接池配置 (Spring Boot 3.2 默认 HikariCP)
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      connection-timeout: 30000
+
+  # ========== Redis 配置 ==========
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:                    # Redis 密码（无密码则留空）
+      database: 0
+      timeout: 5000ms
+      lettuce:
+        pool:
+          max-active: 16
+          max-idle: 8
+          min-idle: 4
+          max-wait: 3000ms
+
+  # ========== Jackson JSON 配置 ==========
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+# ========== MyBatis-Plus 配置 ==========
+mybatis-plus:
+  # 实体类扫描包
+  type-aliases-package: com.library.module.*.entity
+  # Mapper XML 文件位置
+  mapper-locations: classpath*:mapper/**/*.xml
+  global-config:
+    db-config:
+      # 主键策略：ASSIGN_ID (雪花算法)
+      id-type: ASSIGN_ID
+      # 逻辑删除字段
+      logic-delete-field: deleted
+      logic-delete-value: 1        # 已删除
+      logic-not-delete-value: 0    # 未删除
+      # 自动填充字段
+      insert-strategy: NOT_NULL
+      update-strategy: NOT_NULL
+  configuration:
+    # 驼峰命名转换
+    map-underscore-to-camel-case: true
+    # SQL 日志输出
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 缓存
+    cache-enabled: false
+
+# ========== JWT 配置 ==========
+jwt:
+  # 密钥（生产环境应使用环境变量或配置中心）
+  secret: YmlibGlvdGVjaF9zZWNyZXRfa2V5X2Zvcl9qd3RfdG9rZW5fMjAyNA==
+  # Token 过期时间（单位：毫秒，默认 24 小时）
+  expiration: 86400000
+  # Token 前缀
+  token-prefix: "Bearer "
+  # HTTP 请求头名称
+  header: Authorization
+
+# ========== Knife4j API 文档配置 ==========
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.library.module
+
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+    enable-footer: false
+
+# ========== 日志配置 ==========
+logging:
+  level:
+    root: info
+    com.library: debug
+    org.springframework.security: info

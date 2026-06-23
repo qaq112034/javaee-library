@@ -1,0 +1,1 @@
+import{r as t}from"./request-D2jfctDS.js";const a=o=>t.get("/book/list",{params:o}),k=o=>t.get(`/book/${o}`),b=o=>t.post("/book",o),c=(o,s)=>t.put(`/book/${o}`,s),d=o=>t.delete(`/book/${o}`),p=(o,s)=>t.put(`/book/${o}/status`,{status:s}),u=(o=10)=>t.get("/book/hot",{params:{limit:o}});export{a,k as b,c,d,b as e,u as g,p as u};

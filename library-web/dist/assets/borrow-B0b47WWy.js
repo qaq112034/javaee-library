@@ -1,0 +1,1 @@
+import{r}from"./request-D2jfctDS.js";const e=o=>r.get("/borrow/list",{params:o}),s=o=>r.post("/borrow",o),n=o=>r.put(`/borrow/${o}/return`),w=o=>r.put(`/borrow/${o}/renew`),a=()=>r.get("/borrow/overdue");export{e as a,w as b,s as c,a as g,n as r};

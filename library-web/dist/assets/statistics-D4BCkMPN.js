@@ -1,0 +1,1 @@
+import{r as t}from"./request-D2jfctDS.js";const r=()=>t.get("/statistics/dashboard"),e=(s=30)=>t.get("/statistics/trend",{params:{days:s}}),o=()=>t.get("/statistics/category");export{e as a,o as b,r as g};
